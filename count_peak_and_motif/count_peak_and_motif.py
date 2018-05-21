@@ -75,7 +75,7 @@ def parse_motif():
 	
 	with gzip.GzipFile('peak_sum.tsv.gz', 'wb') as f:
 		# header line
-		f.write("\t".join( [ 'peak', 'exp', 'occurence', 'fc', 'GGACT,RRACT,DRACH', 'seq' ] ) + '\n')
+		f.write("\t".join( [ 'peak', 'exp_num', 'exp', 'occurence_num', 'occurence', 'fc', 'GGACT,RRACT,DRACH', 'seq' ] ) + '\n')
 		for peak in peak_dict:
 			chrom, start, end, strand = peak.split(':')
 			peak_seq = _fetch_seq(genome, chrom, start, end, strand)
@@ -86,7 +86,9 @@ def parse_motif():
 			
 			f.write('\t'.join( [
 				peak, 
+				str(len(occured_exp)),
 				','.join(occured_exp), 
+				str(len(occurence)),
 				','.join(occurence), 
 				','.join(fc), 
 				','.join(motif_count), 
