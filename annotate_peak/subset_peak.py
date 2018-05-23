@@ -9,7 +9,7 @@
 
 import pandas as pd
 import numpy as np
-import maptlotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 def read_annot():
 	# read data and do some clean-up
@@ -28,11 +28,13 @@ def read_annot():
 	df = pd.merge(tmp, df_loc, on='peak')
 	
 	# plot
-	df.boxplot(column=['avg_cons', 'snp_num'], by='CDS_and_UTR')
-	plt.show()
+	#df.boxplot(column=['avg_cons', 'snp_num'], by='CDS_and_UTR')
+	#plt.show()
 	
 	# save
 	df.to_csv("annot_peak.df.gz", sep='\t', compression='gzip', index=False)
 	
 	return df
 
+if __name__ == '__main__':
+	read_annot()
